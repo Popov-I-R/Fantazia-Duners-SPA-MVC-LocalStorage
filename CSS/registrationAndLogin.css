@@ -1,0 +1,73 @@
+#registrationAndLogin {
+position: relative;
+}
+
+.container-background {
+    position: absolute;
+    
+}
+
+.container-background > img {
+    width: 100%;
+    height: 100%;
+}
+
+
+/* START REGISTRATION  */
+
+.register-container {
+    position: relative;
+    display: block;
+    height: 40%;
+    width: 30%;
+    background-color: wheat;
+    z-index: 2;
+}
+
+.hidden-nav {
+    display: none; !important
+}
+
+.register-container {
+    top: 11em;
+    left: 3em;
+
+}
+
+
+#registerForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+
+
+
+
+
+
+/* END REGISTRATION  */
+
+/* START LOGIN  */
+
+.login-container {
+    position: relative;
+    display: block;
+    height: 40%;
+    width: 30%;
+    background-color: wheat;
+    z-index: 2;
+
+    top: 11em;
+    left: 3em;
+}
+
+#loginForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+
+/* END LOGIN  */
