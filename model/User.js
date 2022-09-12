@@ -1,8 +1,9 @@
+
 class User {
   constructor(username,email,password) {
-    this.cart = [];
+    this.cart = []
     this.orders = [];
-
+    
     this.username = username;
     this.email = email;
     this.password = password;
@@ -15,18 +16,20 @@ class User {
       product.quantity = +quantity;
       if (this.cart.indexOf(product) === -1) {
         this.cart.push(product);
+        
       }
     } else {
       product.quantity += +quantity;
     }
   }
 
+
   removeFromCart(product) {
     let getIndex = this.cart.indexOf(product);
     this.cart.splice(getIndex, 1);
   }
 
-  makeOrder(date, name, phone, address, productsNameAndCount, totalPrice) {
+  makeOrder(date, name, phone, address, productsNameAndCount, totalPrice,user) {
     
     let order = {};
     order.date = date;
@@ -36,12 +39,33 @@ class User {
     order.productsNameAndCount = productsNameAndCount;
     order.totalPrice = totalPrice;
     this.orders.unshift(order);
+
+
+    
+    // // Изваждам си масива с потребители
+    let users = JSON.parse(localStorage.getItem("users"));
+    //намирам кой е логнатия потребител
+    let loggedUser = users.find((e) => e.email == user.email)
+
+    // //намирам кой е логнатия потребител
+    // // console.log(loggedUser); 
+    
+    loggedUser.orders.push(JSON.stringify(order))
+    
+    localStorage.setItem("users",JSON.stringify(users))
+
   }
 }
 
 
-let userManager = (function(){ 
 
+
+
+
+
+
+
+let userManager = (function(){ 
 class UserManager {
     
   constructor() {
@@ -75,6 +99,19 @@ class UserManager {
   checkForExistingUser(username) {
       return this.users.some(user => user.username === username);
   }
+
+  userLoggedIn(email){
+    
+      let users = JSON.parse(localStorage.getItem("users"));
+      //намирам кой е логнатия потребител
+      let loggedUser = users.find((user) => user.email == email);
+      
+      return loggedUser
+
+  }
+
+  
+
 
 }
 

@@ -27,7 +27,31 @@
         printHomePage(filtered,homeResults)
         onHashChange()
     })
-    
+    //----------
+
+
+
+    let testGlobalUser; // Използвам го долу, после го подавам на функцията за поръчка. -> Работи, но не е ок така. При рефактурирането да се направи да не е глобално!
+
+        loginForm = document.getElementById('loginForm')
+
+        loginForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const {email: {value:email }, password: {value:password }} = this.elements;
+
+        let users = JSON.parse(localStorage.getItem("users"));
+
+        //намирам кой е логнатия потребител
+        testGlobalUser = users.find((user) => user.email == email)
+        console.log(testGlobalUser); 
+        
+         })
+         console.log(testGlobalUser);
+
+
+//-----------
+
     
     function showCounter() {
         let products = totalProducts;
@@ -285,6 +309,9 @@
         container.append(orderHistory);
     
     
+        let myOrders = testGlobalUser.orders
+        console.log(myOrders);
+
         if (orders.length > 0) {
             for (let i = 0; i < orders.length; i++) {
                 let order = orders[i]
@@ -460,10 +487,12 @@
             let address = document.getElementById("address").value;
             let productsNameAndCount = [];
             let totalOrderPrice = 0;
+
+            
             
             user.cart.forEach(e => totalOrderPrice += e.totalPrice);
             user.cart.forEach(e => productsNameAndCount.push(`${e.name} - ${e.quantity} бр.`));
-            user.makeOrder(date,name,phone,address,productsNameAndCount,totalOrderPrice);
+            user.makeOrder(date,name,phone,address,productsNameAndCount,totalOrderPrice,testGlobalUser);
             user.cart = [];
         
             showCounter();
