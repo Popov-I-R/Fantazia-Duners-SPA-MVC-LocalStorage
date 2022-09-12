@@ -31,23 +31,23 @@
 
 
 
-    let testGlobalUser; // Използвам го долу, после го подавам на функцията за поръчка. -> Работи, но не е ок така. При рефактурирането да се направи да не е глобално!
+    // let testGlobalUser; // Използвам го долу, после го подавам на функцията за поръчка. -> Работи, но не е ок така. При рефактурирането да се направи да не е глобално!
 
-        loginForm = document.getElementById('loginForm')
+    //     loginForm = document.getElementById('loginForm')
 
-        loginForm.addEventListener('submit', function (event) {
-        event.preventDefault();
+    //     loginForm.addEventListener('submit', function (event) {
+    //     event.preventDefault();
 
-        const {email: {value:email }, password: {value:password }} = this.elements;
+    //     const {email: {value:email }, password: {value:password }} = this.elements;
 
-        let users = JSON.parse(localStorage.getItem("users"));
+    //     let users = JSON.parse(localStorage.getItem("users"));
 
-        //намирам кой е логнатия потребител
-        testGlobalUser = users.find((user) => user.email == email)
-        console.log(testGlobalUser); 
+    //     //намирам кой е логнатия потребител
+    //     testGlobalUser = users.find((user) => user.email == email)
+    //     console.log(testGlobalUser); 
         
-         })
-         console.log(testGlobalUser);
+    //      })
+    //      console.log(testGlobalUser);
 
 
 //-----------
@@ -69,8 +69,10 @@
         }
     }
     
+    let activeUser = new ActiveUser() //////////////// za active useraaaaa - Не трий 
+
     let user = new User();
-    let manager = new MainManager() 
+    let manager = new MainManager()  
     
     for (let i = 0; i < data.length; i++) {
         let obj = data[i] 
@@ -308,9 +310,10 @@
         orderHistory.appendChild(table);
         container.append(orderHistory);
     
-    
-        let myOrders = testGlobalUser.orders
-        console.log(myOrders);
+       
+
+        // let myOrders = testGlobalUser.orders
+        // console.log(myOrders);
 
         if (orders.length > 0) {
             for (let i = 0; i < orders.length; i++) {
@@ -337,7 +340,8 @@
     }
     
     function printCartPage(producs,container) {
-    
+        // To get the current user orders history
+        let  currentUserOrderHistory = activeUser.showOrdersHistory() 
         if (user.cart.length < 1) {
             totalProducts = 0;
             container. innerHTML = "";
@@ -352,7 +356,9 @@
             }
             printIfCartEmpty()
             
-            printOrderHistory(user.orders,container)
+
+           
+            printOrderHistory(currentUserOrderHistory,container)
         } else {
             container.innerHTML = ""
     
@@ -426,7 +432,9 @@
             }
             
             printTotalPriceAndSubmitButton();
-            printOrderHistory(user.orders,container);
+
+            
+            printOrderHistory(currentUserOrderHistory,container);
     
             function printTotalPriceAndSubmitButton(){
     
@@ -492,7 +500,10 @@
             
             user.cart.forEach(e => totalOrderPrice += e.totalPrice);
             user.cart.forEach(e => productsNameAndCount.push(`${e.name} - ${e.quantity} бр.`));
-            user.makeOrder(date,name,phone,address,productsNameAndCount,totalOrderPrice,testGlobalUser);
+            user.makeOrder(date,name,phone,address,productsNameAndCount,totalOrderPrice);
+
+            activeUser.makeOrder(date,name,phone,address,productsNameAndCount,totalOrderPrice); ////// za active user-a - не трий ! 
+
             user.cart = [];
         
             showCounter();

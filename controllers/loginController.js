@@ -16,9 +16,9 @@
             location.hash = '#homePage';
 
             myUser = userManager.userLoggedIn(email)
-            console.log(myUser);
+            // console.log(myUser);
 
-
+            activeUser.email = email
 
 
             // userManager.userLoggedIn(email)
