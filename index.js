@@ -340,8 +340,8 @@
     }
     
     function printCartPage(producs,container) {
-        // To get the current user orders history
-        let  currentUserOrderHistory = activeUser.showOrdersHistory() 
+        
+        let  currentUserOrderHistory = activeUser.showOrdersHistory() // To get the current user orders history
         if (user.cart.length < 1) {
             totalProducts = 0;
             container. innerHTML = "";
@@ -465,6 +465,20 @@
                         }
                     } else {
                         location.hash = `#deliveryPage`
+                        // dolu do kraq na else-a da napravq onova ?! 
+                        let testUser = activeUser.giveMeTheUser()
+                       
+                        if (testUser.phone) {
+                            document.getElementById("phone").value = `${testUser.phone}`
+                        }
+                        if (testUser.address !== undefined) {
+                            document.getElementById("address").innerText = `${testUser.address}`
+                        }
+                        if (testUser.name) {
+                            document.getElementById("name").value = `${testUser.name}`
+                        }
+                        
+                        
                     }
                 })
     
@@ -480,11 +494,20 @@
             }
         }
     }
+
     
-    
-    
+    // let adrForm = document.getElementById("address")
+    //         adrForm.innerHTML = `${testUser.address}`
+
+// form.addEventListener("mouseover", function () {
+//     let testForAddress = activeUser.giveMeTheUser()
+//     console.log(testForAddress);
+//     console.log(activeUser.email);
+// })
+
     form.addEventListener("submit", function(e) {
         e.preventDefault();
+        
     
         if(user.cart.length === 0) {
             location.hash = `#cartPage`
@@ -492,7 +515,11 @@
             let date = new Date().toLocaleDateString();
             let name = document.getElementById("name").value;
             let phone = document.getElementById("phone").value;
-            let address = document.getElementById("address").value;
+            
+            // var myTextArea = document.getElementById('address');
+
+            let address = document.getElementById("address").value
+            // let address = document.getElementById("address").value;
             let productsNameAndCount = [];
             let totalOrderPrice = 0;
 

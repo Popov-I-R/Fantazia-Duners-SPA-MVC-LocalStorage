@@ -2,7 +2,7 @@
 
     let loginForm = document.getElementById('loginForm');    
     let wrongCredentialsError = document.getElementById('loginError');
-    let myUser;
+    let testThreeUser;
     
 
     loginForm.addEventListener('submit', function (event) {
@@ -15,10 +15,12 @@
             
             location.hash = '#homePage';
 
-            myUser = userManager.userLoggedIn(email)
+          
             // console.log(myUser);
 
             activeUser.email = email
+            testThreeUser = activeUser.giveMeTheUserWhenLogin()
+            localStorage.setItem('active2', JSON.stringify(testThreeUser))
 
 
             // userManager.userLoggedIn(email)
