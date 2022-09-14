@@ -63,7 +63,7 @@
                         header.classList.add("hidden-nav")
                         registationPage.style.display = "flex"
                         loginPage.style.display = "none";
-                        registrationAndLogin.style.display = "block";
+                        registrationAndLogin.style.display = "inline-block";
                         break;
                     case "loginPage":
                         homePage.style.display= "none";
@@ -74,7 +74,7 @@
                         header.classList.add("hidden-nav")
                         loginPage.style.display = "flex";
                         registationPage.style.display = "none";  
-                        registrationAndLogin.style.display = "block" ;                         
+                        registrationAndLogin.style.display = "inline-block" ;                         
                         break; 
                     case "":
                         homePage.style.display= "none";
@@ -85,7 +85,7 @@
                         header.classList.add("hidden-nav")
                         loginPage.style.display = "flex";
                         registationPage.style.display = "none";  
-                        registrationAndLogin.style.display = "block" ;                         
+                        registrationAndLogin.style.display = "inline-block" ;                         
                         break; 
                     default:
                         homePage.style.display= "none";
@@ -96,7 +96,7 @@
                         header.classList.add("hidden-nav")
                         loginPage.style.display = "flex";
                         registationPage.style.display = "none";  
-                        registrationAndLogin.style.display = "block" ;                         
+                        registrationAndLogin.style.display = "inline-block" ;                         
                         break; 
                 }
             } else {
@@ -188,7 +188,7 @@
                             header.classList.add("hidden-nav")
                             registationPage.style.display = "flex"
                             loginPage.style.display = "none";
-                            registrationAndLogin.style.display = "block";
+                            registrationAndLogin.style.display = "inline-block";
                             break;
                         case "loginPage":
                             homePage.style.display= "none";
@@ -199,7 +199,7 @@
                             header.classList.add("hidden-nav")
                             loginPage.style.display = "flex";
                             registationPage.style.display = "none";  
-                            registrationAndLogin.style.display = "block" ;                         
+                            registrationAndLogin.style.display = "inline-block" ;                         
                             break;   
                         default:
                             homePage.style.display= "block";

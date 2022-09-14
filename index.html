@@ -1,29 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./CSS/reset.css">
+    <link rel="stylesheet" href="./CSS/loginAndRegisterBackground.css">
+    <link rel="stylesheet" href="./CSS/loginAndRegistraterForms.css">
     <link rel="stylesheet" href="./CSS/header.css">
     <link rel="stylesheet" href="./CSS/mainPage.css">
     <link rel="stylesheet" href="./CSS/cartPage.css">
     <link rel="stylesheet" href="./CSS/deliveryPage.css">
     <link rel="stylesheet" href="./CSS/orderCompletePage.css">
-    <link rel="stylesheet" href="./CSS/registrationAndLogin.css">
     <title>Дюнери Фантазия</title>
     <link rel="icon" type="image/x-icon" href="./img/logo.jpeg">
-    
-    <style>
-
-        .errorValidation {
-            display: none;
-        }
-
-    </style>
-
-
 </head>
 <body>
     <header id="header">
@@ -92,8 +82,8 @@
                      <img src="./imgFirst/pngwing.com(4).png" alt="Duner-Image4">
             </div>
             <div class="loginPage" id="loginPage">
-                <h1>Дюнери фантация</h1>
                 <div class="login-container" id="login-container">
+                    <h2 class="welcome">Добре дошли</h2>
                     <form id="loginForm">
                         <input type="email" name="email" placeholder="email">
                         <input type="password" name="password" placeholder="password">
@@ -106,7 +96,8 @@
                 </div>
             </div>
             <div class="registerPage" id="registerPage">
-                <div class="register-container" id="registerPage">
+                <div class="register-container">
+                    <h2 class="welcome">Добре дошли</h2>
                     <form id="registerForm">
                         <input type="text" name="username" placeholder="username" id="regUsername">
                         <input type="email" name="email" placeholder="email" id="regEmail">
@@ -121,24 +112,10 @@
                     </span>
                 </div>
             </div>
-
-
-
-            
         </div>
-
-
-
-
-
-
-
-
-
-
     </main>
-    
 
+    
     <script src="./model/UserManager.js"></script>
     <script src="./model/User.js"></script>
     <script src="./model/ActiveUserWithLocalStorage.js"></script>
