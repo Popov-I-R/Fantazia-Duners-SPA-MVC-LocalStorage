@@ -18,7 +18,7 @@ registerForm.addEventListener("submit",function(e){
     e.preventDefault()
     const {username: {value:username},email: {value:email}, password: {value:password}} = this.elements;
     if(userManager.addUser(username, email, password)) {
-        location.hash = "#login-container"
+        location.hash = "#loginPage"
     } else {
         userExistError.style.display="block"
     }

@@ -1,76 +1,13 @@
 
-    let homePage = document.getElementById("homePage");
-    let cartPage = document.getElementById("cartPage");
-    let deliveryPage = document.getElementById("deliveryPage");
-    let homeResults = document.getElementById("results");
-    let orderCompletePage = document.getElementById("orderCompletePage")
-    let errorPage = document.getElementById("errorPage")
-    
-    let counterHeader = document.getElementById('countProducts');
-    let emptyCard = document.getElementsByClassName("empty-cart");
-    let totalProducts = 0;
-    let searchField = document.getElementById("search");
-    let form = document.getElementById("form-delivery");
+    // let emptyCard = document.getElementsByClassName("empty-cart");
 
     let registrationAndLogin = document.getElementById("registrationAndLogin")
-    let registationPage = document.getElementById("register-container")
-    let loginPage = document.getElementById("login-container")
+    let registationPage = document.getElementById("registerPage")
+    let loginPage = document.getElementById("loginPage")
     
-    let header = document.getElementById("header")    
-
-
-
-
-    searchField.addEventListener("keyup", function(e){
-        let text = e.target.value
-        let filtered = manager.filter(text)
-        printHomePage(filtered,homeResults)
-        onHashChange()
-    })
-    //----------
-
-
-
-    // let testGlobalUser; // Използвам го долу, после го подавам на функцията за поръчка. -> Работи, но не е ок така. При рефактурирането да се направи да не е глобално!
-
-    //     loginForm = document.getElementById('loginForm')
-
-    //     loginForm.addEventListener('submit', function (event) {
-    //     event.preventDefault();
-
-    //     const {email: {value:email }, password: {value:password }} = this.elements;
-
-    //     let users = JSON.parse(localStorage.getItem("users"));
-
-    //     //намирам кой е логнатия потребител
-    //     testGlobalUser = users.find((user) => user.email == email)
-    //     console.log(testGlobalUser); 
-        
-    //      })
-    //      console.log(testGlobalUser);
-
-
-//-----------
-
     
-    function showCounter() {
-        let products = totalProducts;
-        user.cart.forEach(e => products+= e.quantity);
-        counterHeader.innerHTML = products;
-        if (products == 0) {
-            counterHeader.classList.remove("test-showed");
-            counterHeader.classList.add("test-hidden");
-            onHashChange();
-        } else {
-            counterHeader.innerHTML = products;
-            counterHeader.classList.remove("test-hidden");
-            counterHeader.classList.add("test-showed");
-            onHashChange();
-        }
-    }
     
     let activeUser = new ActiveUser() //////////////// za active useraaaaa - Не трий 
-
     let user = new User();
     let manager = new MainManager()  
     
@@ -86,11 +23,99 @@
         manager.add(duner) 
     }
     
+// tests start 
+    if (localStorage.getItem("activeUser")) {
+        console.log(localStorage.getItem("activeUser"));
+    } else {
+        console.log(localStorage.getItem("activeUser"));
+    }
+
+    
+    let header = document.getElementById("header")   
+    let logoutButton = document.getElementById("logoutButton")
+    logoutButton.addEventListener("click", function(){
+        header.removeAttribute("style")
+        header.classList.add("hidden-nav")
+
+        localStorage.removeItem("activeUser")
+    })
+
+
+
     let onHashChange = function () {
         let hash = location.hash.slice(1)
-    
-            if (hash === "" || hash === "homePage" || hash ===  "cartPage" || 
-                hash === "deliveryPage" || hash ===  "orderCompletePage" || hash === "register-container" || hash === "login-container") {
+
+
+        //ako localSt nqma users - registrationPage 
+        //ako localSt ima users, no nqma activeUser  - trqbva da moje da hodi samo do stranici za login i registraciq 
+        // ako localSt ima users i activeUser - moje da hodi navsqkude 
+
+        if(localStorage.getItem("users") == null || localStorage.getItem("activeUser") == null) {
+            if (hash === "registerPage" || hash === "loginPage" || hash === "") {
+                switch (hash) {
+                    case "registerPage":
+                        homePage.style.display= "none";
+                        cartPage.style.display= "none";
+                        deliveryPage.style.display= "none";
+                        orderCompletePage.style.display = "none"
+                        errorPage.style.display="none"
+                        loginPage.style.display="none"
+                        header.classList.add("hidden-nav")
+                        registationPage.style.display = "flex"
+                        loginPage.style.display = "none";
+                        registrationAndLogin.style.display = "block";
+                        break;
+                    case "loginPage":
+                        homePage.style.display= "none";
+                        cartPage.style.display= "none";
+                        deliveryPage.style.display= "none"
+                        orderCompletePage.style.display = "none"
+                        errorPage.style.display="none"
+                        header.classList.add("hidden-nav")
+                        loginPage.style.display = "flex";
+                        registationPage.style.display = "none";  
+                        registrationAndLogin.style.display = "block" ;                         
+                        break; 
+                    case "":
+                        homePage.style.display= "none";
+                        cartPage.style.display= "none";
+                        deliveryPage.style.display= "none"
+                        orderCompletePage.style.display = "none"
+                        errorPage.style.display="none"
+                        header.classList.add("hidden-nav")
+                        loginPage.style.display = "flex";
+                        registationPage.style.display = "none";  
+                        registrationAndLogin.style.display = "block" ;                         
+                        break; 
+                    default:
+                        homePage.style.display= "none";
+                        cartPage.style.display= "none";
+                        deliveryPage.style.display= "none"
+                        orderCompletePage.style.display = "none"
+                        errorPage.style.display="none"
+                        header.classList.add("hidden-nav")
+                        loginPage.style.display = "flex";
+                        registationPage.style.display = "none";  
+                        registrationAndLogin.style.display = "block" ;                         
+                        break; 
+                }
+            } else {
+                header.style.display="none"
+                homePage.style.display= "none";
+                cartPage.style.display= "none";
+                deliveryPage.style.display= "none";
+                orderCompletePage.style.display = "none"
+                errorPage.style.display="block";
+                loginPage.style.display = "none";
+                registationPage.style.display = "none";
+                location.hash = "#errorPage"
+                registrationAndLogin.style.display = "none";
+            }
+           
+        }
+        else if(localStorage.getItem("users") && localStorage.getItem("activeUser")) {
+              if (hash === "" || hash === "homePage" || hash ===  "cartPage" || 
+                hash === "deliveryPage" || hash ===  "orderCompletePage" || hash === "loginPage" || hash === "registerPage") {
                     switch (hash) {
                         case "homePage":
                             homePage.style.display= "block";
@@ -153,7 +178,7 @@
                             registrationAndLogin.style.display = "none"
                             
                             break;
-                        case "register-container":
+                        case "registerPage":
                             homePage.style.display= "none";
                             cartPage.style.display= "none";
                             deliveryPage.style.display= "none";
@@ -161,31 +186,35 @@
                             errorPage.style.display="none"
                             loginPage.style.display="none"
                             header.classList.add("hidden-nav")
-                            registationPage.style.display = "block"
+                            registationPage.style.display = "flex"
                             loginPage.style.display = "none";
+                            registrationAndLogin.style.display = "block";
                             break;
-                        case "login-container":
-                            homePage.style.display= "none";
-                            cartPage.style.display= "none";
-                            deliveryPage.style.display= "none";
-                            orderCompletePage.style.display = "none"
-                            errorPage.style.display="none"
-                            loginPage.style.display="block"
-                            header.classList.add("hidden-nav")
-                            registationPage.style.display = "none"
-                            break;    
-                        default:
+                        case "loginPage":
                             homePage.style.display= "none";
                             cartPage.style.display= "none";
                             deliveryPage.style.display= "none"
                             orderCompletePage.style.display = "none"
                             errorPage.style.display="none"
                             header.classList.add("hidden-nav")
-                            loginPage.style.display = "block";
-                            registationPage.style.display = "none";                            
+                            loginPage.style.display = "flex";
+                            registationPage.style.display = "none";  
+                            registrationAndLogin.style.display = "block" ;                         
+                            break;   
+                        default:
+                            homePage.style.display= "block";
+                            cartPage.style.display= "none";
+                            deliveryPage.style.display= "none"
+                            orderCompletePage.style.display = "none"
+                            errorPage.style.display="none"
+                            // header.classList.add("hidden-nav")
+                            loginPage.style.display = "none";
+                            registationPage.style.display = "none";  
+                            registrationAndLogin.style.display = "none" ;                          
                             break;
                     }
             } else {
+                header.style.display="none"
                 homePage.style.display= "none";
                 cartPage.style.display= "none";
                 deliveryPage.style.display= "none";
@@ -194,7 +223,124 @@
                 loginPage.style.display = "none";
                 registationPage.style.display = "none";
                 location.hash = "#errorPage"
+                registrationAndLogin.style.display = "none";
             }
+        }
+        // ako localSt ima potrebitel activeUser potrebitelq moje da hodi do vs stranici 
+        //ako localSt nqma potrebitel, no ima users 
+
+    
+            // if (hash === "" || hash === "homePage" || hash ===  "cartPage" || 
+            //     hash === "deliveryPage" || hash ===  "orderCompletePage" || hash === "loginPage" || hash === "registerPage") {
+            //         switch (hash) {
+            //             case "homePage":
+            //                 homePage.style.display= "block";
+            //                 cartPage.style.display= "none";
+            //                 deliveryPage.style.display= "none";
+            //                 orderCompletePage.style.display="none"
+            //                 errorPage.style.display="none"
+            //                 header.style.display="block"
+            //                 loginPage.style.display = "none";
+            //                 registationPage.style.display = "none";
+            //                 registrationAndLogin.style.display = "none"
+                            
+            //                 break;
+            //             case "cartPage":
+            //                     homePage.style.display= "none";
+            //                     cartPage.style.display= "block";
+            //                     deliveryPage.style.display= "none";
+            //                     orderCompletePage.style.display = "none";
+            //                     errorPage.style.display="none"
+            //                     header.style.display="block"
+            //                     loginPage.style.display = "none";
+            //                     registationPage.style.display = "none";
+            //                     registrationAndLogin.style.display = "none"
+                                
+            //                     printCartPage(user.cart, cartPage)
+            //                 break;
+            //             case "deliveryPage":
+            //                     homePage.style.display= "none";
+            //                     cartPage.style.display= "none";
+            //                     deliveryPage.style.display= "block";
+            //                     orderCompletePage.style.display = "none";
+            //                     errorPage.style.display="none"
+            //                     header.style.display="block"
+            //                     loginPage.style.display = "none";
+            //                     registationPage.style.display = "none";
+            //                     registrationAndLogin.style.display = "none"
+                               
+            //                 break;
+            //             case "orderCompletePage":
+            //                 homePage.style.display= "none";
+            //                 cartPage.style.display= "none";
+            //                 deliveryPage.style.display= "none";
+            //                 orderCompletePage.style.display = "block"
+            //                 errorPage.style.display="none"
+            //                 header.style.display="block"
+            //                 loginPage.style.display = "none";
+            //                 registationPage.style.display = "none";
+            //                 registrationAndLogin.style.display = "none"
+                           
+            //                 break;
+            //             case "errorPage":
+            //                 homePage.style.display= "none";
+            //                 cartPage.style.display= "none";
+            //                 deliveryPage.style.display= "none";
+            //                 orderCompletePage.style.display = "none"
+            //                 errorPage.style.display="block"
+            //                 header.style.display="block"
+            //                 loginPage.style.display = "none";
+            //                 registationPage.style.display = "none";
+            //                 registrationAndLogin.style.display = "none"
+                            
+            //                 break;
+            //             case "registerPage":
+            //                 homePage.style.display= "none";
+            //                 cartPage.style.display= "none";
+            //                 deliveryPage.style.display= "none";
+            //                 orderCompletePage.style.display = "none"
+            //                 errorPage.style.display="none"
+            //                 loginPage.style.display="none"
+            //                 header.classList.add("hidden-nav")
+            //                 registationPage.style.display = "flex"
+            //                 loginPage.style.display = "none";
+            //                 registrationAndLogin.style.display = "block";
+            //                 break;
+            //             case "loginPage":
+            //                 homePage.style.display= "none";
+            //                 cartPage.style.display= "none";
+            //                 deliveryPage.style.display= "none"
+            //                 orderCompletePage.style.display = "none"
+            //                 errorPage.style.display="none"
+            //                 header.classList.add("hidden-nav")
+            //                 loginPage.style.display = "flex";
+            //                 registationPage.style.display = "none";  
+            //                 registrationAndLogin.style.display = "block" ;                         
+            //                 break;   
+            //             default:
+            //                 homePage.style.display= "none";
+            //                 cartPage.style.display= "none";
+            //                 deliveryPage.style.display= "none"
+            //                 orderCompletePage.style.display = "none"
+            //                 errorPage.style.display="none"
+            //                 header.classList.add("hidden-nav")
+            //                 loginPage.style.display = "flex";
+            //                 registationPage.style.display = "none";  
+            //                 registrationAndLogin.style.display = "block" ;                          
+            //                 break;
+            //         }
+            // } else {
+            //     header.style.display="none"
+            //     homePage.style.display= "none";
+            //     cartPage.style.display= "none";
+            //     deliveryPage.style.display= "none";
+            //     orderCompletePage.style.display = "none"
+            //     errorPage.style.display="block";
+            //     loginPage.style.display = "none";
+            //     registationPage.style.display = "none";
+            //     location.hash = "#errorPage"
+            //     registrationAndLogin.style.display = "none";
+            // }
     }
     
     window.addEventListener("hashchange", onHashChange)
@@ -280,7 +426,7 @@
     
     printHomePage(manager.allDuners,homeResults)
     
-    let addedProducts = document.getElementById("added-products")
+    // let addedProducts = document.getElementById("added-products")
     
     function printOrderHistory(orders, container) {
         let orderHistory = document.createElement("div")
@@ -310,10 +456,6 @@
         orderHistory.appendChild(table);
         container.append(orderHistory);
     
-       
-
-        // let myOrders = testGlobalUser.orders
-        // console.log(myOrders);
 
         if (orders.length > 0) {
             for (let i = 0; i < orders.length; i++) {
@@ -354,11 +496,10 @@
                 emptyCart.appendChild(noProducts);
                 container.append(emptyCart)
             }
-            printIfCartEmpty()
-            
 
-           
+            printIfCartEmpty()
             printOrderHistory(currentUserOrderHistory,container)
+
         } else {
             container.innerHTML = ""
     
@@ -465,7 +606,6 @@
                         }
                     } else {
                         location.hash = `#deliveryPage`
-                        // dolu do kraq na else-a da napravq onova ?! 
                         let testUser = activeUser.giveMeTheUser()
                        
                         if (testUser.phone) {
@@ -496,48 +636,3 @@
     }
 
     
-    // let adrForm = document.getElementById("address")
-    //         adrForm.innerHTML = `${testUser.address}`
-
-// form.addEventListener("mouseover", function () {
-//     let testForAddress = activeUser.giveMeTheUser()
-//     console.log(testForAddress);
-//     console.log(activeUser.email);
-// })
-
-    form.addEventListener("submit", function(e) {
-        e.preventDefault();
-        
-    
-        if(user.cart.length === 0) {
-            location.hash = `#cartPage`
-        } else {
-            let date = new Date().toLocaleDateString();
-            let name = document.getElementById("name").value;
-            let phone = document.getElementById("phone").value;
-            
-            // var myTextArea = document.getElementById('address');
-
-            let address = document.getElementById("address").value
-            // let address = document.getElementById("address").value;
-            let productsNameAndCount = [];
-            let totalOrderPrice = 0;
-
-            
-            
-            user.cart.forEach(e => totalOrderPrice += e.totalPrice);
-            user.cart.forEach(e => productsNameAndCount.push(`${e.name} - ${e.quantity} бр.`));
-            user.makeOrder(date,name,phone,address,productsNameAndCount,totalOrderPrice);
-
-            activeUser.makeOrder(date,name,phone,address,productsNameAndCount,totalOrderPrice); ////// za active user-a - не трий ! 
-
-            user.cart = [];
-        
-            showCounter();
-            location.hash = `#orderCompletePage`;
-            setTimeout(callCartPage, 2000);
-            function callCartPage(){
-                location.hash = `#cartPage`
-            }
-        }})
-

@@ -20,6 +20,14 @@ a {
     font-size: 20px;
 }
 
+.buttons-left {
+    display: flex;
+    gap: 25px;
+}
+
+
+
+
 .nav-wrapper {
     max-width: 1200px;
     margin-left: auto;

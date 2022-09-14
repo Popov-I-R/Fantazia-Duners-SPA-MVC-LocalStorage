@@ -24,7 +24,6 @@
     </style>
 
 
-
 </head>
 <body>
     <header id="header">
@@ -33,9 +32,9 @@
                 <a href="index.html"><img id="logo" src="./img/logo.jpeg" alt="logo-img"></a>
             </div>
             <div class="nav-buttons" id="navi">
-                <div>
+                <div class="buttons-left">
                     <a href="#homePage">Меню</a>
-                    <a href="index.html">Изход</a>
+                    <a href="#loginPage" id="logoutButton">Изход</a>
                 </div>
                 <div class="cart-holder">
                     <span class="test-hidden" id="countProducts"></span>
@@ -86,49 +85,79 @@
         </div>
         <div id="registrationAndLogin">
             <div class="container-background">
-                    <img src="/img/LoginAndRegisterImage.jpg" alt="Duner-Image">
+                     <img src="./imgFirst/pngwing.com.png" alt="Duner-Image">
+                     <img src="./imgFirst/pngwing.com(1).png" alt="Duner-Image1">
+                     <img src="./imgFirst/pngwing.com(2).png" alt="Duner-Image2">
+                     <img src="./imgFirst/pngwing.com(3).png" alt="Duner-Image3">
+                     <img src="./imgFirst/pngwing.com(4).png" alt="Duner-Image4">
             </div>
-            <div class="login-container" id="login-container">
-                <form id="loginForm">
-                    <input type="email" name="email" placeholder="email">
-                    <input type="password" name="password" placeholder="password">
-                    <p class="errorValidation" id="loginError">Грешни данни</p>
-                    <button type="submit"> Вход</button>
-                </form>
-                <span>Нямате акаунт ? Регистрирайте се от 
-                    <a href="#register-container">тук</a>  
-                </span>
-                
+            <div class="loginPage" id="loginPage">
+                <h1>Дюнери фантация</h1>
+                <div class="login-container" id="login-container">
+                    <form id="loginForm">
+                        <input type="email" name="email" placeholder="email">
+                        <input type="password" name="password" placeholder="password">
+                        <p class="errorValidation" id="loginError">Грешни данни</p>
+                        <button type="submit"> Вход</button>
+                    </form>
+                    <span>Нямате акаунт ? Регистрирайте се от 
+                        <a href="#registerPage">тук</a>  
+                    </span>   
+                </div>
+            </div>
+            <div class="registerPage" id="registerPage">
+                <div class="register-container" id="registerPage">
+                    <form id="registerForm">
+                        <input type="text" name="username" placeholder="username" id="regUsername">
+                        <input type="email" name="email" placeholder="email" id="regEmail">
+                        <input type="password" name="password" placeholder="password" id="regPassword">
+                        <input type="password" name="confirmPass" placeholder="confirm pass" id="confirmRegPassword">
+                        <p class="errorValidation" id="passMismatchError">Паролите не съвпадат</p>
+                        <p class="errorValidation" id="userExistError">Това потребителско име е заето</p>
+                        <button type="submit" id="registerBtn" disabled>Регистрация</button>
+                    </form>
+                    <span>Имате акаунт ? Влезнете в него от 
+                        <a href="#loginPage">тук</a>  
+                    </span>
+                </div>
             </div>
 
-            <div class="register-container" id="register-container">
-                <form id="registerForm">
-                    <input type="text" name="username" placeholder="username" id="regUsername">
-                    <input type="email" name="email" placeholder="email" id="regEmail">
-                    <input type="password" name="password" placeholder="password" id="regPassword">
-                    <input type="password" name="confirmPass" placeholder="confirm pass" id="confirmRegPassword">
-                    <p class="errorValidation" id="passMismatchError">Паролите не съвпадат</p>
-                    <p class="errorValidation" id="userExistError">Това потребителско име е заето</p>
-                    <button type="submit" id="registerBtn" disabled>Регистрация</button>
-                </form>
-                <span>Имате акаунт ? Влезнете в него от 
-                    <a href="#login-container">тук</a>  
-                </span>
-            </div>
+
+
             
         </div>
+
+
+
+
+
+
+
+
+
+
     </main>
     
+
+    <script src="./model/UserManager.js"></script>
     <script src="./model/User.js"></script>
+    <script src="./model/ActiveUserWithLocalStorage.js"></script>
+
     <script src="./controllers/registerController.js"></script>
     <script src="./controllers/loginController.js"></script>
-    <script src="constants.js"></script>
+    <!-- <script src="constants.js"></script> -->
     
     <script src="./model/Duner.js"></script>
     <script src="./model/MainManager.js"></script>
     
     <script src="./data/data.js"></script>
+
+    <script src="./controllers/counterHeader.js"></script>
+    <script src="./controllers/formDeliveryPageController.js"></script>
+    <script src="./controllers/searchController.js"></script>
+    <script src="const_Pages.js"></script>
     <script src="index.js"></script>
+
     
 </body>
 </html>
