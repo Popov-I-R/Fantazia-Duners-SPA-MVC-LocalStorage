@@ -1,6 +1,5 @@
-
 class User {
-  constructor(username,email,password,name,address,phone) {
+  constructor(username, email, password, name, address, phone) {
     this.cart = [];
     this.orders = [];
     this.username = username;
@@ -12,7 +11,6 @@ class User {
   }
 
   addToCart(product, quantity) {
-    
     let getIndex = this.cart.indexOf(product);
 
     if (getIndex === -1) {
@@ -31,7 +29,6 @@ class User {
   }
 
   makeOrder(date, name, phone, address, productsNameAndCount, totalPrice) {
-    
     let order = {};
     order.date = date;
     order.name = name;
@@ -40,6 +37,5 @@ class User {
     order.productsNameAndCount = productsNameAndCount;
     order.totalPrice = totalPrice;
     this.orders.unshift(order);
-
   }
 }

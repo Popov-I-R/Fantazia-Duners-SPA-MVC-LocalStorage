@@ -1,5 +1,4 @@
 class Duner {
-
     constructor(image,name,weight,category,price) {
         this.image = image;
         this.name = name

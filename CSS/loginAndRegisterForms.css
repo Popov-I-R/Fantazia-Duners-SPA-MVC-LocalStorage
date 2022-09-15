@@ -1,0 +1,108 @@
+.loginPage,
+.registerPage {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.login-container,
+.register-container {
+    position: relative;
+    display: block;
+    width: 20%;
+    background-color: #b3c4f557;
+    z-index: 2;
+    padding: 20px;
+    border-radius: 20px;
+    border: 1px solid blueviolet;
+    text-align: center;
+}
+
+#loginForm,
+#registerForm {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.login-container>.welcome,
+.register-container>.welcome {
+    margin-bottom: 26px;
+    font-size: 1.3em;
+    font-family: cursive;
+}
+
+#registerForm>input,
+#loginForm>input {
+    padding: 6px;
+    border-radius: 5px;
+}
+
+#registerForm>button,
+#loginForm>button {
+    padding: 6px;
+    border-radius: 5px;
+    color: black;
+    background: #d99ad499;
+}
+
+#registerForm>button:hover,
+#loginForm>button:hover {
+    cursor: pointer;
+    color: black;
+    background: #eb81ef
+}
+
+.register-container>span,
+.login-container>span {
+    text-align: center;
+    color: #2c212e;
+}
+
+.register-container>span>a,
+.login-container>span>a {
+    color: red;
+}
+
+.hidden-nav {
+    display: none; !important
+}
+
+/* MEDIA TEST */
+
+@media only screen and (min-width: 300px) {
+
+    .login-container,
+    .register-container {
+        left: -580px;
+    }
+
+    .container-background> :last-child {
+        width: 24%;
+        position: absolute;
+        top: -32px;
+        left: 793px;
+    }
+}
+
+.errorValidation {
+    display: none;
+}
+
+@media only screen and (min-width: 1350px) {
+
+    .login-container,
+    .register-container {
+        left: 10px;
+    }
+
+    .container-background> :last-child {
+        width: 27%;
+        position: absolute;
+        top: -90px;
+        left: 1359px;
+    }
+}
